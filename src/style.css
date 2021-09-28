@@ -1,0 +1,44 @@
+@import "reset.css";
+
+#app {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inputDiv {
+  width: 25%;
+}
+
+input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.actorResult {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 10px;
+  row-gap: 7px;
+}
+
+.actor {
+  padding: 8px;
+  border: 1px solid black;
+  border-radius: 8px;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.actor i {
+  color: red;
+  cursor: pointer;
+}
+
+input {
+  font-size: 15px;
+  padding: 5px;
+}
