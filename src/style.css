@@ -11,12 +11,23 @@
   width: 25%;
 }
 
-input {
-  width: 100%;
-  box-sizing: border-box;
+.errorMessage {
+  height: 16px;
+  padding: 2px;
+  font-size: 14px;
+  color: #d35400;
+  text-align: center;
 }
 
-.actorResult {
+input {
+  margin-top: 3px;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 15px;
+  padding: 5px;
+}
+
+.searchList {
   margin-top: 10px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -36,9 +47,4 @@ input {
 .actor i {
   color: red;
   cursor: pointer;
-}
-
-input {
-  font-size: 15px;
-  padding: 5px;
 }

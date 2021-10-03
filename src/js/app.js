@@ -1,12 +1,13 @@
 import { api } from "./api.js";
 import { SearchInput } from "./searchInput.js";
+import { SearchList } from "./searchList.js";
 import { SearchResult } from "./searchResult.js";
 
 class App {
   constructor(target) {
     this.target = target;
-    this.movies = [];
-    this.searchList = [];
+    this.movies = {};
+    this.actors = [];
 
     this.searchInput = new SearchInput({
       target,
@@ -16,23 +17,29 @@ class App {
         this.setState(movies, actor);
       },
       chkInput: (actor) => {
-        return this.searchList.includes(actor);
+        return this.actors.includes(actor);
       },
     });
 
-    this.searchResult = new SearchResult({
+    this.searchList = new SearchList({
       deleteElement: (actor) => {
-        const index = this.searchList.indexOf(actor);
-        this.searchList.splice(index, 1);
+        const index = this.actors.indexOf(actor);
+        this.actors.splice(index, 1);
+        delete this.movies[actor];
       },
     });
   }
 
   setState(movies, actor) {
-    this.movies = movies;
-    this.searchList.push(actor);
-    this.searchResult.setState(actor);
+    if (movies !== undefined) {
+      this.searchInput.setErrorMessage("");
+      this.movies[actor] = movies;
+      this.actors.push(actor);
+      this.searchList.setState(actor);
+    } else {
+      this.searchInput.setErrorMessage("영화배우를 검색해주세요.");
+    }
   }
 }
 
-window.onload = () => new App(document.getElementById("app"));
+new App(document.getElementById("app"));
