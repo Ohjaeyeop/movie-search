@@ -1,18 +1,20 @@
 export class SearchList {
-  constructor({ deleteElement }) {
+  constructor(target) {
     this.searchListBox = document.createElement("div");
     this.searchListBox.className = "searchList";
 
-    this.inputDiv = document.querySelector(".inputDiv");
-    this.inputDiv.appendChild(this.searchListBox);
+    target.appendChild(this.searchListBox);
+
+    this.actors = [];
 
     this.handleDelete = (ele) => {
-      deleteElement(ele.querySelector("span").innerText);
+      this.deleteElement(ele.querySelector("span").innerText);
       ele.remove();
     };
   }
 
   setState(actor) {
+    this.actors.push(actor);
     const div = document.createElement("div");
     div.className = "actor";
 
@@ -28,5 +30,10 @@ export class SearchList {
     deleteIcon.addEventListener("click", (event) => {
       this.handleDelete(event.target.parentNode);
     });
+  }
+
+  deleteElement(actor) {
+    const index = this.actors.indexOf(actor);
+    this.actors.splice(index, 1);
   }
 }
