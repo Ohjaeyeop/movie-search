@@ -1,7 +1,8 @@
 export class SearchList {
-  constructor(target) {
+  constructor(target, onSearch) {
     this.searchListBox = document.createElement("div");
     this.searchListBox.className = "searchList";
+    this.onSearch = onSearch;
 
     target.appendChild(this.searchListBox);
 
@@ -35,5 +36,6 @@ export class SearchList {
   deleteElement(actor) {
     const index = this.actors.indexOf(actor);
     this.actors.splice(index, 1);
+    this.onSearch("");
   }
 }

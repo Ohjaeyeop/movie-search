@@ -6,6 +6,21 @@ export class SearchInput {
     this.inputDiv.className = "inputDiv";
     target.appendChild(this.inputDiv);
 
+    this.onSearch = async (actor) => {
+      this.searchInput.disabled = true;
+      const response = await onSearch(
+        this.searchList.actors.join() + `,${actor}`
+      );
+      if (response) {
+        actor && this.searchList.setState(actor);
+        this.setErrorMessage("");
+      } else {
+        this.setErrorMessage("만족하는 검색결과가 없습니다.");
+      }
+      this.searchInput.disabled = false;
+      this.searchInput.focus();
+    };
+
     this.errorMessage = document.createElement("div");
     this.errorMessage.className = "errorMessage";
     this.inputDiv.appendChild(this.errorMessage);
@@ -15,7 +30,7 @@ export class SearchInput {
     this.inputDiv.appendChild(this.searchInput);
     this.searchInput.focus();
 
-    this.searchList = new SearchList(this.inputDiv);
+    this.searchList = new SearchList(this.inputDiv, this.onSearch);
 
     const handleSubmit = async (event) => {
       const { value } = event.target;
@@ -26,18 +41,7 @@ export class SearchInput {
           } else if (this.chkInput(value)) {
             this.setErrorMessage("이미 검색하신 이름입니다.");
           } else {
-            this.searchInput.disabled = true;
-            const response = await onSearch(
-              this.searchList.actors.join() + `,${value}`
-            );
-            if (response) {
-              this.searchList.setState(value);
-              this.setErrorMessage("");
-            } else {
-              this.setErrorMessage("만족하는 검색결과가 없습니다.");
-            }
-            this.searchInput.disabled = false;
-            this.searchInput.focus();
+            this.onSearch(value);
           }
           event.target.value = "";
         }

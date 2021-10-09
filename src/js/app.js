@@ -15,6 +15,7 @@ class App {
           return false;
         }
         this.setState(movies);
+        console.log(this.movies);
         return true;
       },
     });
