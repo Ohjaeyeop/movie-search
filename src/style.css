@@ -1,26 +1,23 @@
 @import "reset.css";
 
 #app {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .inputDiv {
   width: 25%;
+  margin: auto;
 }
 
 .errorMessage {
+  margin: 12px 0;
   height: 16px;
   padding: 2px;
-  font-size: 14px;
+  font-size: 15px;
   color: #d35400;
   text-align: center;
 }
 
-input {
-  margin-top: 3px;
+.searchInput {
   width: 100%;
   box-sizing: border-box;
   font-size: 15px;
@@ -47,4 +44,12 @@ input {
 .actor i {
   color: red;
   cursor: pointer;
+}
+
+.searchResult {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  column-gap: 20px;
+  row-gap: 10px;
 }

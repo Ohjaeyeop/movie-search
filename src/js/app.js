@@ -4,8 +4,6 @@ import { SearchResult } from "./searchResult.js";
 
 class App {
   constructor(target) {
-    this.target = target;
-
     this.searchInput = new SearchInput({
       target,
       onSearch: async (actor) => {
@@ -15,7 +13,6 @@ class App {
           return false;
         }
         this.setState(movies);
-        console.log(this.movies);
         return true;
       },
     });
@@ -25,6 +22,8 @@ class App {
 
   setState(movies) {
     this.movies = movies;
+    this.searchResult.render(this.movies);
+    console.log(this.movies);
   }
 }
 

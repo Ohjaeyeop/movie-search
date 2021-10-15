@@ -21,12 +21,13 @@ export class SearchInput {
       this.searchInput.focus();
     };
 
-    this.errorMessage = document.createElement("div");
+    this.errorMessage = document.createElement("p");
     this.errorMessage.className = "errorMessage";
     this.inputDiv.appendChild(this.errorMessage);
 
     this.searchInput = document.createElement("input");
     this.searchInput.placeholder = "영화배우를 검색하세요.";
+    this.searchInput.className = "searchInput";
     this.inputDiv.appendChild(this.searchInput);
     this.searchInput.focus();
 
