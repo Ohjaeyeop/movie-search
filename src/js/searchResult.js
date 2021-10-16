@@ -8,9 +8,9 @@ export class SearchResult {
     this.searchResult.innerHTML = movies
       .map(
         (movie) =>
-          `<div><img src=${
+          `<div><img width=213px height=305px src=${
             movie.posters.split("|")[0]
-          } alt="이미지 없음"></div>`
+          }></div>`
       )
       .join("");
   }

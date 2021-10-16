@@ -5,7 +5,7 @@
 
 .inputDiv {
   width: 25%;
-  margin: auto;
+  margin: 0 auto;
 }
 
 .errorMessage {
@@ -20,8 +20,8 @@
 .searchInput {
   width: 100%;
   box-sizing: border-box;
-  font-size: 15px;
-  padding: 5px;
+  font-size: 16px;
+  padding: 9px;
 }
 
 .searchList {
@@ -36,9 +36,13 @@
   padding: 8px;
   border: 1px solid black;
   border-radius: 8px;
-  text-align: center;
   display: flex;
   justify-content: space-between;
+  font-size: 15px;
+}
+
+.actor > span {
+  line-height: 15px;
 }
 
 .actor i {
@@ -47,9 +51,9 @@
 }
 
 .searchResult {
-  margin-top: 20px;
+  margin-top: 50px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  column-gap: 20px;
-  row-gap: 10px;
+  grid-template-columns: repeat(5, 1fr);
+  row-gap: 20px;
+  justify-items: center;
 }

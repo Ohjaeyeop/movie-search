@@ -7,13 +7,15 @@ export class SearchInput {
     target.appendChild(this.inputDiv);
 
     this.onSearch = async (actor) => {
+      this.setErrorMessage("");
       this.searchInput.disabled = true;
       const response = await onSearch(
-        this.searchList.actors.join() + `,${actor}`
+        (this.searchList.actors.join() + `,${actor}`)
+          .replace(/^,/, "")
+          .replace(/,$/, "")
       );
       if (response) {
         actor && this.searchList.setState(actor);
-        this.setErrorMessage("");
       } else {
         this.setErrorMessage("만족하는 검색결과가 없습니다.");
       }

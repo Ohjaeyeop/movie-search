@@ -4,9 +4,15 @@ import { SearchResult } from "./searchResult.js";
 
 class App {
   constructor(target) {
+    this.movies = [];
+
     this.searchInput = new SearchInput({
       target,
       onSearch: async (actor) => {
+        if (actor === "") {
+          this.setState([]);
+          return true;
+        }
         const { Data } = await api.movieInfo(actor);
         const { Result: movies } = Data[0];
         if (movies === undefined) {
@@ -23,7 +29,6 @@ class App {
   setState(movies) {
     this.movies = movies;
     this.searchResult.render(this.movies);
-    console.log(this.movies);
   }
 }
 
