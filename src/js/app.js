@@ -29,6 +29,7 @@ class App {
   setState(movies) {
     this.movies = movies;
     this.searchResult.render(this.movies);
+    console.log(this.movies);
   }
 }
 

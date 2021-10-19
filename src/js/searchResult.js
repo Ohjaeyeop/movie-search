@@ -6,12 +6,18 @@ export class SearchResult {
   }
   render(movies) {
     this.searchResult.innerHTML = movies
-      .map(
-        (movie) =>
-          `<div><img width=213px height=305px src=${
-            movie.posters.split("|")[0]
-          }></div>`
-      )
+      .map((movie) => {
+        if (movie.posters.length > 0) {
+          return `<div><img width=250px height=320px src=${this.getImageUrl(
+            movie
+          )} /></div>`;
+        }
+      })
       .join("");
+  }
+  getImageUrl(movie) {
+    const imageUrl = movie.posters.split("|");
+    const index = Math.floor(Math.random() * imageUrl.length);
+    return imageUrl[index];
   }
 }
