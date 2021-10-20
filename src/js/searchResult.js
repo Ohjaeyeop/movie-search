@@ -8,7 +8,7 @@ export class SearchResult {
     this.searchResult.innerHTML = movies
       .map((movie) => {
         if (movie.posters.length > 0) {
-          return `<div><img width=250px height=320px src=${this.getImageUrl(
+          return `<div><img width=240px height=320px src=${this.getImageUrl(
             movie
           )} /></div>`;
         }
