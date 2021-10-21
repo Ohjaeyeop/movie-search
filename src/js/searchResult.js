@@ -1,3 +1,5 @@
+import { lazyLoad } from "./lazyLoad.js";
+
 export class SearchResult {
   constructor(target) {
     this.searchResult = document.createElement("div");
@@ -7,13 +9,13 @@ export class SearchResult {
   render(movies) {
     this.searchResult.innerHTML = movies
       .map((movie) => {
-        if (movie.posters.length > 0) {
-          return `<div><img width=240px height=320px src=${this.getImageUrl(
-            movie
-          )} /></div>`;
-        }
+        return `<div><img class="lazy" width=240px height=320px alt="이미지 없음" data-src=${this.getImageUrl(
+          movie
+        )} /></div>`;
       })
       .join("");
+
+    lazyLoad();
   }
   getImageUrl(movie) {
     const imageUrl = movie.posters.split("|");
