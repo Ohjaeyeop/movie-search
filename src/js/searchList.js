@@ -7,11 +7,6 @@ export class SearchList {
     target.appendChild(this.searchListBox);
 
     this.actors = [];
-
-    this.handleDelete = (ele) => {
-      this.deleteElement(ele.querySelector("span").innerText);
-      ele.remove();
-    };
   }
 
   setState(actor) {
@@ -31,6 +26,11 @@ export class SearchList {
     deleteIcon.addEventListener("click", (event) => {
       this.handleDelete(event.target.parentNode);
     });
+  }
+
+  handleDelete(ele) {
+    this.deleteElement(ele.querySelector("span").innerText);
+    ele.remove();
   }
 
   deleteElement(actor) {
