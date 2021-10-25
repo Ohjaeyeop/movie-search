@@ -5,6 +5,21 @@ export class SearchResult {
     this.searchResult = document.createElement("div");
     this.searchResult.className = "searchResult";
     target.appendChild(this.searchResult);
+
+    const handleClick = ({ target }) => {
+      let modal = document.querySelector(".visibleModal");
+      if (modal) {
+        if (target !== modal) {
+          modal.style.display = "none";
+          modal.classList.remove("visibleModal");
+          clearInterval(this.timerId);
+        }
+      } else if (target.className === "poster") {
+        this.showModal(target.alt, target.dataset.stlls);
+      }
+    };
+
+    window.addEventListener("click", handleClick);
   }
 
   render(movies) {
@@ -17,7 +32,6 @@ export class SearchResult {
       .join("");
 
     this.createModal(movies);
-    this.clickImage();
     lazyLoad();
   }
 
@@ -25,14 +39,6 @@ export class SearchResult {
     const imageUrl = movie.posters.split("|");
     const index = Math.floor(Math.random() * imageUrl.length);
     return imageUrl[index];
-  }
-
-  clickImage() {
-    window.addEventListener("click", ({ target }) => {
-      if (target.className === "poster") {
-        this.showModal(target.alt, target.dataset.stlls);
-      }
-    });
   }
 
   createModal(movies) {
@@ -47,6 +53,7 @@ export class SearchResult {
     let modal = document.getElementById(title);
     let modalImage = modal.querySelector("img");
     modal.style.display = "block";
+    modal.classList.add("visibleModal");
 
     const getStlls = stlls.split("|");
     modalImage.src = getStlls[0];
@@ -57,12 +64,6 @@ export class SearchResult {
       modalImage.src = getStlls[index];
     };
 
-    let timerId = setInterval(getRandomStll, 1000);
-    document.addEventListener("click", (event) => {
-      if (event.target !== modal) {
-        modal.style.display = "none";
-        clearInterval(timerId);
-      }
-    });
+    this.timerId = setInterval(getRandomStll, 1000);
   }
 }
